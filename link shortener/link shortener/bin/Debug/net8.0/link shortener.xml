@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>link shortener</name>
+    </assembly>
+    <members>
+        <member name="M:TestApplication.Controllers.LinkController.GetAllLinks">
+             <summary>
+             Get all links.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 GET /api/links
+            
+             </remarks>
+             <returns>
+             200 OK with the list of all links in the response body.
+             </returns>
+             <response code="200">Returns the list of all links.</response>
+        </member>
+        <member name="M:TestApplication.Controllers.LinkController.GetLink(System.Guid)">
+             <summary>
+             Get a link by ID.
+             </summary>
+             <param name="id">The ID of the link to retrieve.</param>
+             <remarks>
+             Sample request:
+            
+                 GET /api/links/{id}
+            
+             </remarks>
+             <returns>
+             200 OK with the link details in the response body.
+             </returns>
+             <response code="200">Returns the requested link.</response>
+             <response code="404">If the link with the specified ID is not found.</response>
+        </member>
+        <member name="M:TestApplication.Controllers.LinkController.DeleteLink(System.Guid)">
+             <summary>
+             Delete a link by ID.
+             </summary>
+             <param name="id">The ID of the link to delete.</param>
+             <remarks>
+             Sample request:
+            
+                 DELETE /api/links/{id}
+            
+             </remarks>
+             <returns>
+             200 OK if the link is successfully deleted.
+             </returns>
+             <response code="200">Link deleted successfully.</response>
+             <response code="404">If the link with the specified ID is not found.</response>
+        </member>
+        <member name="M:TestApplication.Controllers.LinkController.ShortenUrl(System.String)">
+             <summary>
+             Shorten a long URL.
+             </summary>
+             <param name="longUrl">The long URL to be shortened.</param>
+             <remarks>
+             Sample request:
+            
+                 POST /api/links/shorten
+                 {
+                     "longUrl": "https://example.com/very/long/url"
+                 }
+            
+             </remarks>
+             <returns>
+             200 OK with the shortened URL in the response body.
+             </returns>
+        </member>
+        <member name="M:TestApplication.Controllers.LinkController.RedirectShortUrl(System.String)">
+             <summary>
+             Redirect to the full URL based on the provided short URL.
+             </summary>
+             <param name="shortUrl">The short URL to redirect to the corresponding full URL.</param>
+             <remarks>
+             Sample request:
+            
+                 GET /api/links/{shortUrl}
+            
+             </remarks>
+             <returns>
+             - 302 Redirect to the full URL if the short URL is found.
+             - 404 Not Found if the short URL is not found.
+             </returns>
+        </member>
+        <member name="T:link_shortener.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:link_shortener.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:link_shortener.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:link_shortener.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

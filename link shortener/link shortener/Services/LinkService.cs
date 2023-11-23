@@ -38,6 +38,7 @@ public class LinkService : ILinkService
         await _repository.Delete<LinkEntity>(id);
         await _repository.SaveChangesAsync();
     }
+    
 
     public async Task<string> ShortenUrlAsync(string longUrl)
     {
@@ -58,17 +59,26 @@ public class LinkService : ILinkService
             await _repository.SaveChangesAsync();
             return entity.ShortUrl;
         }
-        else
-        {
-            var link = await _repository.Get<LinkEntity>(x => x.LongUrl == longUrl).FirstOrDefaultAsync();
-            await _repository.SaveChangesAsync();
-            return link.ShortUrl;   
-        }
+
+        var link = await _repository.Get<LinkEntity>(x => x.LongUrl == longUrl).FirstOrDefaultAsync();
+        await _repository.SaveChangesAsync();
+        return link.ShortUrl;
     }
+
+    
+    public async Task<string> GetFullUrl(string shortUrl)
+    {
+        var link = await _repository.Get<LinkEntity>(x => x.ShortUrl == $"http://localhost:5180/{shortUrl}")
+            .FirstOrDefaultAsync();
+        await IncrementClickCount(shortUrl);
+        return link.LongUrl;
+    }
+    
 
     public async Task IncrementClickCount(string shortUrl)
     {
-        var link = await _repository.Get<LinkEntity>(x => x.ShortUrl == $"http://localhost:5180/{shortUrl}").FirstOrDefaultAsync();
+        var link = await _repository.Get<LinkEntity>(x => x.ShortUrl == $"http://localhost:5180/{shortUrl}")
+            .FirstOrDefaultAsync();
         if (link != null)
         {
             link.ClickCount++;
@@ -76,6 +86,7 @@ public class LinkService : ILinkService
         }
     }
 
+    
     private async Task<string> GenerateShortUrl(string longUrl)
     {
         using (var md5 = MD5.Create())
@@ -88,17 +99,11 @@ public class LinkService : ILinkService
             return sb.ToString().Substring(0, 8);
         }
     }
+    
 
     public async Task<bool> IsLinkExists(string longUrl)
     {
         var like = await _repository.Get<LinkEntity>(x => x.LongUrl == longUrl).FirstOrDefaultAsync();
         return like != null;
-    }
-    
-    public async Task<string> GetFullUrl(string shortUrl)
-    {
-        var link = await _repository.Get<LinkEntity>(x => x.ShortUrl == $"http://localhost:5180/{shortUrl}").FirstOrDefaultAsync();
-        await IncrementClickCount(shortUrl);
-        return link.LongUrl;
     }
 }

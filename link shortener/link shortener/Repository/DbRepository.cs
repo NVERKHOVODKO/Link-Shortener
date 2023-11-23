@@ -30,10 +30,6 @@ public class DbRepository : IDbRepository
         return entity.Entity.Id;
     }
 
-    public async Task AddRange<T>(IEnumerable<T> newEntities) where T : class, IEntity
-    {
-        await _context.Set<T>().AddRangeAsync(newEntities);
-    }
 
     public async Task Delete<T>(Guid id) where T : class, IEntity
     {
@@ -45,25 +41,9 @@ public class DbRepository : IDbRepository
         }
     }
 
-
-    public async Task Remove<T>(T entity) where T : class, IEntity
-    {
-        await Task.Run(() => _context.Set<T>().Remove(entity));
-    }
-
-    public async Task RemoveRange<T>(IEnumerable<T> entities) where T : class, IEntity
-    {
-        await Task.Run(() => _context.Set<T>().RemoveRange(entities));
-    }
-
     public async Task Update<T>(T entity) where T : class, IEntity
     {
         await Task.Run(() => _context.Set<T>().Update(entity));
-    }
-
-    public async Task UpdateRange<T>(IEnumerable<T> entities) where T : class, IEntity
-    {
-        await Task.Run(() => _context.Set<T>().UpdateRange(entities));
     }
 
     public async Task<int> SaveChangesAsync()

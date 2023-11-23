@@ -1,4 +1,4 @@
-using System.Configuration;
+using System.Reflection;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +6,9 @@ using Microsoft.OpenApi.Models;
 using ProjectX.Middlewares;
 using Repository;
 using TestApplication.Services;
+using System;
 
+using System.IO;
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -18,13 +20,16 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "Users CRUD API",
-        Description = "An ASP.NET Core Web API for CRUD operations on users"
+        Title = "Web API",
+        Description = "An ASP.NET Core Web API for shorting links"
     });
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+    options.IncludeXmlComments(xmlPath);
 });
 
-builder.Services.AddTransient<ILinkService, LinkService>();
-builder.Services.AddTransient<IDbRepository, DbRepository>();
+builder.Services.AddScoped<ILinkService, LinkService>();
+builder.Services.AddScoped<IDbRepository, DbRepository>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve; });
@@ -32,7 +37,7 @@ builder.Services.AddControllers()
 var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<DataContext>(options =>
-        options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
+    options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
 builder.Services.AddTransient<DataContext>();
 
 
