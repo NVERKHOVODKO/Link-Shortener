@@ -19,6 +19,31 @@ public class LinkController : ControllerBase
 
     
     /// <summary>
+    /// Redirect to the full URL based on the provided short URL.
+    /// </summary>
+    /// <param name="shortUrl">The short URL to redirect to the corresponding full URL.</param>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /api/links/{shortUrl}
+    ///
+    /// </remarks>
+    /// <returns>
+    /// - 302 Redirect to the full URL if the short URL is found.
+    /// - 404 Not Found if the short URL is not found.
+    /// </returns>
+    [HttpGet("/{shortUrl}")]
+    [ProducesResponseType(StatusCodes.Status302Found)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> RedirectShortUrl(string shortUrl)
+    {
+        var fullUrl = await _linkService.GetFullUrl(shortUrl);
+        if (fullUrl != null) return Redirect(fullUrl);
+        return NotFound();
+    }
+    
+    
+    /// <summary>
     /// Get all links.
     /// </summary>
     /// <remarks>
@@ -63,33 +88,8 @@ public class LinkController : ControllerBase
         var link = await _linkService.GetLinkAsync(id);
         return Ok(link);
     }
-
     
-    /// <summary>
-    /// Delete a link by ID.
-    /// </summary>
-    /// <param name="id">The ID of the link to delete.</param>
-    /// <remarks>
-    /// Sample request:
-    ///
-    ///     DELETE /api/links/{id}
-    ///
-    /// </remarks>
-    /// <returns>
-    /// 200 OK if the link is successfully deleted.
-    /// </returns>
-    /// <response code="200">Link deleted successfully.</response>
-    /// <response code="404">If the link with the specified ID is not found.</response>
-    [HttpDelete("links/{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteLink(Guid id)
-    {
-        await _linkService.DeleteLinkAsync(id);
-        return Ok("Deleted");
-    }
     
-
     /// <summary>
     /// Shorten a long URL.
     /// </summary>
@@ -114,28 +114,28 @@ public class LinkController : ControllerBase
         return Ok(new { RedirectUrl = shortenUrl });
     }
 
-
+    
     /// <summary>
-    /// Redirect to the full URL based on the provided short URL.
+    /// Delete a link by ID.
     /// </summary>
-    /// <param name="shortUrl">The short URL to redirect to the corresponding full URL.</param>
+    /// <param name="id">The ID of the link to delete.</param>
     /// <remarks>
     /// Sample request:
     ///
-    ///     GET /api/links/{shortUrl}
+    ///     DELETE /api/links/{id}
     ///
     /// </remarks>
     /// <returns>
-    /// - 302 Redirect to the full URL if the short URL is found.
-    /// - 404 Not Found if the short URL is not found.
+    /// 200 OK if the link is successfully deleted.
     /// </returns>
-    [HttpGet("{shortUrl}")]
-    [ProducesResponseType(StatusCodes.Status302Found)]
+    /// <response code="200">Link deleted successfully.</response>
+    /// <response code="404">If the link with the specified ID is not found.</response>
+    [HttpDelete("links/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> RedirectShortUrl(string shortUrl)
+    public async Task<IActionResult> DeleteLink(Guid id)
     {
-        var fullUrl = await _linkService.GetFullUrl(shortUrl);
-        if (fullUrl != null) return Redirect(fullUrl);
-        return NotFound();
+        await _linkService.DeleteLinkAsync(id);
+        return Ok("Deleted");
     }
 }
