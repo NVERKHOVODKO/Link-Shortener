@@ -1,0 +1,143 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.input-section {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.input-url {
+    height: 60px;
+    width: 900px;
+}
+
+.short-url-holder {
+    height: 60px;
+    width: 900px;
+    background-color: #d5edfd;
+}
+
+.shorten-url-btn {
+    height: 60px;
+    width: 160px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    background-color: #0d16b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    height: 57px;
+    width: 140px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 10px;
+    border-color: darkgray;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: dodgerblue;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.8);
+}
+
+input[type="text"]:hover {
+    border-color: #999;
+}
+
+.validation-message {
+    color: red;
+    font-size: 20px;
+}
+
+button {
+    padding: 10px;
+    margin-left: 10px;
+}
+
+#navigateBtn {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #0d16b9;
+    /* Цвет фона */
+    color: white;
+    /* Цвет текста */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Плавное изменение цвета при наведении */
+}
+
+#navigateBtn:hover {
+    background-color: #0d16b9;
+    /* Цвет фона при наведении */
+}
+
+@keyframes slideme {
+    0% {
+        left: -30px;
+        margin-left: 0px;
+    }
+    30% {
+        left: 110%;
+        margin-left: 80px;
+    }
+    100% {
+        left: 110%;
+        margin-left: 80px;
+    }
+}
+
+.btn-new {
+    overflow: hidden;
+    position: relative;
+}
+
+.btn-new:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 200px;
+    margin-left: 60px;
+    background: #fff;
+    opacity: 0.5;
+    position: absolute;
+    left: -40px;
+    top: -100px;
+    z-index: 1;
+    transform: rotate(45deg);
+    transition: all 0.1s;
+    animation-name: slideme;
+    animation-duration: 3s;
+    animation-delay: 0.05s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}

@@ -1,0 +1,34 @@
+<!-- Ваш HTML-код -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="contacts-list">
+        <button class="btn-new" id="navigateBtn" onclick="navigateToExample()">Main menu</button>
+        <table id="linksTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Long URL</th>
+                    <th>Short URL</th>
+                    <th>Click Count</th>
+                    <th>Date Created</th>
+                    <th>Date Updated</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="linksTableBody"></tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

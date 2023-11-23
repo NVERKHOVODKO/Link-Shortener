@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="main-menu.css">
+</head>
+
+<body>
+    <button class="btn-new" id="navigateBtn" onclick="navigateToDatatable()">Datatable</button>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <div class="input-section">
+            <input class="input-url" type="text" id="longUrl" placeholder="Enter your URL">
+            <button class="btn-new" onclick="shortenUrl()">Shorten</button>
+        </div>
+        <div id="errorMessage" class="validation-message hidden">Url is empty</div>
+        <div class="input-section hidden" id="shortenUrlSection">
+            <input class="short-url-holder" type="text" id="shortUrl" placeholder="Shorten url" readonly>
+            <button class="btn-new" onclick="copyUrl()">Copy</button>
+        </div>
+    </div>
+    <script src="main-menu.js"></script>
+</body>
+
+</html>

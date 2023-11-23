@@ -1,0 +1,90 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+#navigateBtn {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #0d16b9;
+    /* Цвет фона */
+    color: white;
+    /* Цвет текста */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Плавное изменение цвета при наведении */
+}
+
+#navigateBtn:hover {
+    background-color: #0d16b9;
+    /* Цвет фона при наведении */
+}
+
+@keyframes slideme {
+    0% {
+        left: -30px;
+        margin-left: 0px;
+    }
+    30% {
+        left: 110%;
+        margin-left: 80px;
+    }
+    100% {
+        left: 110%;
+        margin-left: 80px;
+    }
+}
+
+.btn-new {
+    overflow: hidden;
+    position: relative;
+    height: 57px;
+    width: 140px;
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-new:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 200px;
+    margin-left: 60px;
+    background: #fff;
+    opacity: 0.5;
+    position: absolute;
+    left: -40px;
+    top: -100px;
+    z-index: 1;
+    transform: rotate(45deg);
+    transition: all 0.1s;
+    animation-name: slideme;
+    animation-duration: 3s;
+    animation-delay: 0.05s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+button {
+    padding: 10px;
+    background-color: #0d16b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
