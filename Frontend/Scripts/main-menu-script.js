@@ -2,15 +2,24 @@ function navigateToDatatable() {
     window.location.href = "../Pages/table.html";
 }
 
+function isValidUrl(url) {
+    //var re = /^(https?:\/\/)?([0-9a-z.-]+)\.([a-z]{2,9}\.?)(\/[^\/\?]+)*$/i;
+    var re = /^https?:\/\/.+$/i;
+    console.log(re.test(url));
+    console.log("--------");
+    return re.test(url);
+}
+
 function shortenUrl() {
     const longUrlInput = document.getElementById('longUrl');
     const shortUrlInput = document.getElementById('shortUrl');
     const errorMessageDiv = document.getElementById('errorMessage');
+    console.log("--------");
 
     const longUrl = longUrlInput.value;
 
-    if (!longUrl.trim()) {
-        errorMessageDiv.textContent = 'Url is empty';
+    if (!isValidUrl(longUrl)) {
+        errorMessageDiv.textContent = 'Invalid URL format';
         errorMessageDiv.classList.remove('hidden');
         return;
     } else {
@@ -35,7 +44,7 @@ function shortenUrl() {
             shortUrlInput.value = data.redirectUrl;
 
             var shortenUrlSection = document.getElementById('shortenUrlSection');
-            shortenUrlSection.classList.add('visible'); // Use add to explicitly add the class
+            shortenUrlSection.classList.add('visible');
         })
         .catch(error => {
             // Error
