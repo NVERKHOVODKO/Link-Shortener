@@ -78,7 +78,11 @@ public class LinkService : ILinkService
     {
         var link = await _repository.Get<LinkEntity>(x => x.Id == request.Id).FirstOrDefaultAsync();
         if (link == null) throw new EntityNotFoundException("Link not found");
-        if (request.NewLongUrl != null) link.LongUrl = request.NewLongUrl;
+        if (request.NewLongUrl != null)
+        {
+            link.LongUrl = request.NewLongUrl;
+            link.DateUpdated = DateTime.UtcNow;
+        }
         await _repository.SaveChangesAsync();
     }
 

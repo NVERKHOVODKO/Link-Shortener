@@ -149,6 +149,7 @@ public class LinkController : ControllerBase
     /// <response code="200">Link edited successfully.</response>
     [HttpPatch("links/edit-link")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> EditLink([FromBody] EditLinkRequest request)
     {
         await _linkService.EditLinkAsync(request);
