@@ -6,9 +6,7 @@ using Microsoft.OpenApi.Models;
 using ProjectX.Middlewares;
 using Repository;
 using TestApplication.Services;
-using System;
 
-using System.IO;
 var builder = WebApplication.CreateBuilder(args);
 
 

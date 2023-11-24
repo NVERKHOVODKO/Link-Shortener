@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using link_shortener.DTO;
+using Microsoft.AspNetCore.Mvc;
 using TestApplication.Models;
 using TestApplication.Services;
 
@@ -17,20 +18,18 @@ public class LinkController : ControllerBase
         _linkService = linkService;
     }
 
-    
+
     /// <summary>
-    /// Redirect to the full URL based on the provided short URL.
+    ///     Redirect to the full URL based on the provided short URL.
     /// </summary>
     /// <param name="shortUrl">The short URL to redirect to the corresponding full URL.</param>
     /// <remarks>
-    /// Sample request:
-    ///
+    ///     Sample request:
     ///     GET /api/links/{shortUrl}
-    ///
     /// </remarks>
     /// <returns>
-    /// - 302 Redirect to the full URL if the short URL is found.
-    /// - 404 Not Found if the short URL is not found.
+    ///     - 302 Redirect to the full URL if the short URL is found.
+    ///     - 404 Not Found if the short URL is not found.
     /// </returns>
     [HttpGet("/{shortUrl}")]
     [ProducesResponseType(StatusCodes.Status302Found)]
@@ -41,19 +40,17 @@ public class LinkController : ControllerBase
         if (fullUrl != null) return Redirect(fullUrl);
         return NotFound();
     }
-    
-    
+
+
     /// <summary>
-    /// Get all links.
+    ///     Get all links.
     /// </summary>
     /// <remarks>
-    /// Sample request:
-    ///
+    ///     Sample request:
     ///     GET /api/links
-    ///
     /// </remarks>
     /// <returns>
-    /// 200 OK with the list of all links in the response body.
+    ///     200 OK with the list of all links in the response body.
     /// </returns>
     /// <response code="200">Returns the list of all links.</response>
     [HttpGet("links")]
@@ -64,19 +61,17 @@ public class LinkController : ControllerBase
         return Ok(links);
     }
 
-    
+
     /// <summary>
-    /// Get a link by ID.
+    ///     Get a link by ID.
     /// </summary>
     /// <param name="id">The ID of the link to retrieve.</param>
     /// <remarks>
-    /// Sample request:
-    ///
+    ///     Sample request:
     ///     GET /api/links/{id}
-    ///
     /// </remarks>
     /// <returns>
-    /// 200 OK with the link details in the response body.
+    ///     200 OK with the link details in the response body.
     /// </returns>
     /// <response code="200">Returns the requested link.</response>
     /// <response code="404">If the link with the specified ID is not found.</response>
@@ -88,23 +83,21 @@ public class LinkController : ControllerBase
         var link = await _linkService.GetLinkAsync(id);
         return Ok(link);
     }
-    
-    
+
+
     /// <summary>
-    /// Shorten a long URL.
+    ///     Shorten a long URL.
     /// </summary>
     /// <param name="longUrl">The long URL to be shortened.</param>
     /// <remarks>
-    /// Sample request:
-    ///
+    ///     Sample request:
     ///     POST /api/links/shorten
     ///     {
-    ///         "longUrl": "https://example.com/very/long/url"
+    ///     "longUrl": "https://example.com/very/long/url"
     ///     }
-    ///
     /// </remarks>
     /// <returns>
-    /// 200 OK with the shortened URL in the response body.
+    ///     200 OK with the shortened URL in the response body.
     /// </returns>
     [HttpPost("shorten")]
     [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
@@ -114,19 +107,17 @@ public class LinkController : ControllerBase
         return Ok(new { RedirectUrl = shortenUrl });
     }
 
-    
+
     /// <summary>
-    /// Delete a link by ID.
+    ///     Delete a link by ID.
     /// </summary>
     /// <param name="id">The ID of the link to delete.</param>
     /// <remarks>
-    /// Sample request:
-    ///
+    ///     Sample request:
     ///     DELETE /api/links/{id}
-    ///
     /// </remarks>
     /// <returns>
-    /// 200 OK if the link is successfully deleted.
+    ///     200 OK if the link is successfully deleted.
     /// </returns>
     /// <response code="200">Link deleted successfully.</response>
     /// <response code="404">If the link with the specified ID is not found.</response>
@@ -137,5 +128,30 @@ public class LinkController : ControllerBase
     {
         await _linkService.DeleteLinkAsync(id);
         return Ok("Deleted");
+    }
+
+
+    /// <summary>
+    ///     Edit a link by ID.
+    /// </summary>
+    /// <param name="request">The request to edit the link.</param>
+    /// <remarks>
+    ///     Sample request:
+    ///     PATCH /api/links/edit-link
+    ///     {
+    ///     "id": "7e8d25b3-4e3f-4b27-8278-79e91e57ac64",
+    ///     "newLongUrl": "https://newlongurl.com"
+    ///     }
+    /// </remarks>
+    /// <returns>
+    ///     200 OK if the link is successfully edited.
+    /// </returns>
+    /// <response code="200">Link edited successfully.</response>
+    [HttpPatch("links/edit-link")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+    public async Task<IActionResult> EditLink([FromBody] EditLinkRequest request)
+    {
+        await _linkService.EditLinkAsync(request);
+        return Ok("Edited");
     }
 }

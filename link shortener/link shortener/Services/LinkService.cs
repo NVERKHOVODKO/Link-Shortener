@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using link_shortener.DTO;
 using Microsoft.EntityFrameworkCore;
 using ProjectX.Exceptions;
 using Repository;
@@ -38,7 +39,7 @@ public class LinkService : ILinkService
         await _repository.Delete<LinkEntity>(id);
         await _repository.SaveChangesAsync();
     }
-    
+
 
     public async Task<string> ShortenUrlAsync(string longUrl)
     {
@@ -50,7 +51,6 @@ public class LinkService : ILinkService
             {
                 LongUrl = longUrl,
                 ShortUrl = $"http://localhost:5180/{shortUrl}",
-                //ShortUrl = shortUrl,
                 DateCreated = DateTime.UtcNow,
                 ClickCount = 0
             };
@@ -65,7 +65,7 @@ public class LinkService : ILinkService
         return link.ShortUrl;
     }
 
-    
+
     public async Task<string> GetFullUrl(string shortUrl)
     {
         var link = await _repository.Get<LinkEntity>(x => x.ShortUrl == $"http://localhost:5180/{shortUrl}")
@@ -73,7 +73,15 @@ public class LinkService : ILinkService
         await IncrementClickCount(shortUrl);
         return link.LongUrl;
     }
-    
+
+    public async Task EditLinkAsync(EditLinkRequest request)
+    {
+        var link = await _repository.Get<LinkEntity>(x => x.Id == request.Id).FirstOrDefaultAsync();
+        if (link == null) throw new EntityNotFoundException("Link not found");
+        if (request.NewLongUrl != null) link.LongUrl = request.NewLongUrl;
+        await _repository.SaveChangesAsync();
+    }
+
 
     public async Task IncrementClickCount(string shortUrl)
     {
@@ -86,7 +94,7 @@ public class LinkService : ILinkService
         }
     }
 
-    
+
     private async Task<string> GenerateShortUrl(string longUrl)
     {
         using (var md5 = MD5.Create())
@@ -99,7 +107,7 @@ public class LinkService : ILinkService
             return sb.ToString().Substring(0, 8);
         }
     }
-    
+
 
     public async Task<bool> IsLinkExists(string longUrl)
     {

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="../Styles/main-menu-styles.css">
+</head>
+
+<body>
+    <button class="btn-new" id="navigateBtn" onclick="navigateToDatatable()">Datatable</button>
+    <button class="btn-new" id="editBtn" onclick="openEditLinkModal()">Edit</button>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <div class="input-section">
+            <input class="input-url" type="text" id="longUrl" placeholder="Enter your URL">
+            <button class="btn-new" onclick="shortenUrl()">Shorten</button>
+        </div>
+        <div id="errorMessage" class="validation-message hidden">Url is empty</div>
+        <div class="input-section hidden" id="shortenUrlSection">
+            <input class="short-url-holder" type="text" id="shortUrl" placeholder="Shorten url" readonly>
+            <button class="btn-new" onclick="copyUrl()">Copy</button>
+        </div>
+    </div>
+
+    <div id="editLinkModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditLinkModal()">&times;</span>
+            <h2>Edit Link</h2>
+
+            <div class="input-group">
+                <input class="id-box" type="text" id="id" placeholder="Id" oninput="validateId()">
+                <button onclick="getLinkDetails()">Get link</button>
+            </div>
+            <div id="errorMessageEdit" class="validation-message hidden">Url is empty</div>
+            <div class="input-group">
+                <input type="text" id="editLink" oninput="validateEditLink()" placeholder="Full link">
+                <div id="editLinkValidationMessage" class="validation-message"></div>
+                <button onclick="editLink()">Edit Link</button>
+            </div>
+
+
+            <div class="input-group">
+                <input type="text" id="shortLink" readonly placeholder="Short link">
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="clickCount" readonly placeholder="Click count">
+            </div>
+        </div>
+    </div>
+
+    <script src="../Scripts/main-menu-script.js"></script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function navigateToExample() {
-    window.location.href = "./main-menu.html";
+    window.location.href = "../Pages/main-menu.html";
 }
 
 function fetchAndDisplayLinks() {

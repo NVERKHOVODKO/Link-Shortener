@@ -86,19 +86,15 @@ button {
     padding: 10px;
     margin-top: 20px;
     background-color: #0d16b9;
-    /* Цвет фона */
     color: white;
-    /* Цвет текста */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    /* Плавное изменение цвета при наведении */
 }
 
 #navigateBtn:hover {
     background-color: #0d16b9;
-    /* Цвет фона при наведении */
 }
 
 @keyframes slideme {
@@ -140,4 +136,90 @@ button {
     animation-delay: 0.05s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
+}
+
+#editLinkModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.modal-content {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    margin-right: 10px;
+}
+
+.input-group input {
+    margin-right: 10px;
+}
+
+.input-group button {
+    margin-left: auto;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.close {
+    align-self: flex-end;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    margin-right: 10px;
+}
+
+.input-group input {
+    margin-right: auto;
+}
+
+.input-group button {
+    margin-left: 10px;
 }
