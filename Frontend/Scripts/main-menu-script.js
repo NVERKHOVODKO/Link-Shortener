@@ -10,11 +10,11 @@ function isValidUrl(url) {
     return re.test(url);
 }
 
+
 function shortenUrl() {
     const longUrlInput = document.getElementById('longUrl');
     const shortUrlInput = document.getElementById('shortUrl');
     const errorMessageDiv = document.getElementById('errorMessage');
-    console.log("--------");
 
     const longUrl = longUrlInput.value;
 
@@ -127,13 +127,22 @@ function getLinkDetails() {
         });
 }
 
+
+
+//errorMessageEditNewLink
 async function editLink() {
     const linkId = document.getElementById('id').value;
     const newLongUrl = document.getElementById('editLink').value;
 
-    if (!linkId || !newLongUrl) {
-        alert('ID or Full link cannot be empty');
+    const errorMessageDiv = document.getElementById('errorMessageEditNewLink');
+
+
+    if (!isValidUrl(newLongUrl)) {
+        errorMessageDiv.textContent = 'Invalid URL format';
+        errorMessageDiv.classList.remove('hidden');
         return;
+    } else {
+        errorMessageDiv.classList.add('hidden');
     }
 
     const requestBody = {
