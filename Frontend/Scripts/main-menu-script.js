@@ -128,8 +128,6 @@ function getLinkDetails() {
 }
 
 
-
-//errorMessageEditNewLink
 async function editLink() {
     const linkId = document.getElementById('id').value;
     const newLongUrl = document.getElementById('editLink').value;

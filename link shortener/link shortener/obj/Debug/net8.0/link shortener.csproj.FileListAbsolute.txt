@@ -50,3 +50,8 @@ C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\obj\Debug\ne
 C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\obj\Debug\net8.0\ref\link shortener.dll
 C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\link shortener.xml
 C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\obj\Debug\net8.0\link shortener.xml
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\Microsoft.AspNetCore.SpaServices.Extensions.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
