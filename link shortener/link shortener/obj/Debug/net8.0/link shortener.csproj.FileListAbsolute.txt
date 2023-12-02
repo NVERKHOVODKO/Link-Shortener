@@ -118,3 +118,19 @@ C:\Users\user\Desktop\Link-Shortener-main\link shortener\link shortener\bin\Debu
 C:\Users\user\Desktop\Link-Shortener-main\link shortener\link shortener\bin\Debug\net8.0\NuGet.Resolver.dll
 C:\Users\user\Desktop\Link-Shortener-main\link shortener\link shortener\bin\Debug\net8.0\NuGet.Versioning.dll
 C:\Users\user\Desktop\Link-Shortener-main\link shortener\link shortener\bin\Debug\net8.0\System.ComponentModel.Composition.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\Microsoft.Web.XmlTransform.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Commands.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Common.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Configuration.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Credentials.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.DependencyResolver.Core.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Frameworks.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.LibraryModel.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.PackageManagement.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Packaging.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.ProjectModel.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Protocol.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Resolver.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\NuGet.Versioning.dll
+C:\НЕ СИСТЕМА\Link-Shortener\link shortener\link shortener\bin\Debug\net8.0\System.ComponentModel.Composition.dll

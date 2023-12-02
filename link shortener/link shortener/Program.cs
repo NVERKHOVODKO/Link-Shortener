@@ -35,6 +35,7 @@ var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseMySql(connString, ServerVersion.AutoDetect(connString)));
+
 builder.Services.AddTransient<DataContext>();
 
 
@@ -44,6 +45,7 @@ app.UseCors(x => x
     .AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader());
+app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {
@@ -51,6 +53,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Nikita Verkhovodko");
+        options.InjectStylesheet("/swagger-ui/SwaggerDark.css");
         //options.RoutePrefix = string.Empty;
     });
 }
